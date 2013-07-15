@@ -1,3 +1,4 @@
+<!doctype html>
 <hmtl>
 <head>
 <title>Custom Encryption for everyone</title>
@@ -8,28 +9,37 @@ The Advanced Encryption Standard (AES) is a U.S. Federal Information Processing 
 It was selected after a 5-year process where 15 competing designs were evaluated. -->
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
 <script>
-    var encrypted = CryptoJS.AES.encrypt("Message", "Secret Passphrase");
+    
+	
 
-    var decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase");
+	
+	function testResults (form) {
+	var message = form.inputbox.value;
+	var secret = form.keyphrase.value;
+    var encrypted = CryptoJS.AES.encrypt(message, secret);
+    var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
+    
+    alert ("You typed: " + encrypted);
+}
+	
 </script>
   
 </head>
 
 <body>
   
-<form>
-<input type="radio" name="encrutpion" value="encryption">encryption<br>
-<input type="radio" name="sex" value="decryption">decryption
+<form NAME="myform" ACTION="" METHOD="GET" >
+<input type="radio" name="encrutpion" value="enc">encryption<br>
+<input type="radio" name="decryption" value="dec">decryption
 <br>
-Give me your Key-Phrase here: <input type="text" name="keyphrase"><br>
+Give me your Key-Phrase here: <input type="text" name="keyphrase" VALUE="give me here your keyphrase"><br>
 Give your text here: <br>
-<textarea cols="50" rows="4" name="firsttext">give me here your text 
-</textarea><br>
+<input TYPE="text" NAME="inputbox" VALUE="give me here your text"> <br>
 <br>
 Results:<br>
-<textarea cols="50" rows="4">here i will give the results 
+<textarea cols="50" rows="4" name="resultsarea" >
 </textarea><br>
-<input type="submit" value="Submit">
+<input type="button" name="submit" value="Submit" onClick="testResults(this.form)">
 </form>
   
 </body>
