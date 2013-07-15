@@ -9,17 +9,35 @@ The Advanced Encryption Standard (AES) is a U.S. Federal Information Processing 
 It was selected after a 5-year process where 15 competing designs were evaluated. -->
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
 <script>
-    
+	
 	
 
 	
 	function testResults (form) {
 	var message = form.inputbox.value;
 	var secret = form.keyphrase.value;
+	var encstatus = "Please fill all the fields";
+	
+	for (i = 0; i < 2; i++) {
+
+	if ( form.encrutpion[i].checked ) {
+
+	encstatus = form.encrutpion[i].value;
+	break;
+
+		}
+	}
     var encrypted = CryptoJS.AES.encrypt(message, secret);
     var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
+	if (encstatus == "enc"){
+	alert ("Your encryption is: " + encrypted);
+	} else if (encstatus == "dec"){
+	alert ("Your Message is: " + decrypted);
+	} else {
+	alert (encstatus);
+	}
     
-    alert ("You typed: " + encrypted);
+    
 }
 	
 </script>
@@ -30,7 +48,7 @@ It was selected after a 5-year process where 15 competing designs were evaluated
   
 <form NAME="myform" ACTION="" METHOD="GET" >
 <input type="radio" name="encrutpion" value="enc">encryption<br>
-<input type="radio" name="decryption" value="dec">decryption
+<input type="radio" name="encrutpion" value="dec">decryption
 <br>
 Give me your Key-Phrase here: <input type="text" name="keyphrase" VALUE="give me here your keyphrase"><br>
 Give your text here: <br>
