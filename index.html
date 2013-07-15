@@ -30,9 +30,9 @@ It was selected after a 5-year process where 15 competing designs were evaluated
     var encrypted = CryptoJS.AES.encrypt(message, secret);
     var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
 	if (encstatus == "enc"){
-	alert ("Your encryption is: " + encrypted);
+	form.resultsarea.value = "Your encryption is: " + encrypted;
 	} else if (encstatus == "dec"){
-	alert ("Your Message is: " + decrypted);
+	form.resultsarea.value = "Your decryption is: " + decrypted;
 	} else {
 	alert (encstatus);
 	}
@@ -50,12 +50,12 @@ It was selected after a 5-year process where 15 competing designs were evaluated
 <input type="radio" name="encrutpion" value="enc">encryption<br>
 <input type="radio" name="encrutpion" value="dec">decryption
 <br>
-Give me your Key-Phrase here: <input type="text" name="keyphrase" VALUE="give me here your keyphrase"><br>
+Give me your Key-Phrase here: <input type="text" name="keyphrase" VALUE=""><br>
 Give your text here: <br>
-<input TYPE="text" NAME="inputbox" VALUE="give me here your text"> <br>
+<input TYPE="text" NAME="inputbox" VALUE=""> <br>
 <br>
 Results:<br>
-<textarea cols="50" rows="4" name="resultsarea" >
+<textarea cols="50" rows="4" name="resultsarea" value="" >
 </textarea><br>
 <input type="button" name="submit" value="Submit" onClick="testResults(this.form)">
 </form>
