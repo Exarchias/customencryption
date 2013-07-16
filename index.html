@@ -27,12 +27,12 @@ It was selected after a 5-year process where 15 competing designs were evaluated
 
 		}
 	}
-    var encrypted = CryptoJS.AES.encrypt(message, secret);
+    var encrypted = CryptoJS.AES.encrypt(message, secret); //it works with 256 bit strength key
     var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
 	if (encstatus == "enc"){
-	form.resultsarea.value = "Your encryption is: " + encrypted;
+	form.resultsarea.value = encrypted;
 	} else if (encstatus == "dec"){
-	form.resultsarea.value = "Your decryption is: " + decrypted;
+	form.resultsarea.value = decrypted;
 	} else {
 	alert (encstatus);
 	}
