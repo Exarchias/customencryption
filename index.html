@@ -27,8 +27,11 @@ It was selected after a 5-year process where 15 competing designs were evaluated
 
 		}
 	}
+	
+	
+
     var encrypted = CryptoJS.AES.encrypt(message, secret); //it works with 256 bit strength key
-    var decrypted = CryptoJS.AES.decrypt(encrypted, secret);
+    var decrypted = CryptoJS.AES.decrypt(encrypted, secret); //seems to be ok. but in truth it just turns the encrypted to HEX.
 	if (encstatus == "enc"){
 	form.resultsarea.value = encrypted;
 	} else if (encstatus == "dec"){
