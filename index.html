@@ -13,7 +13,7 @@ It was selected after a 5-year process where 15 competing designs were evaluated
 	
 
 	
-	function testResults (form) {
+	function startResults (form) {
 	var message = form.inputbox.value;
 	var secret = form.keyphrase.value;
 	var encstatus = "Please fill all the fields";
@@ -31,7 +31,7 @@ It was selected after a 5-year process where 15 competing designs were evaluated
 	
 
     var encrypted = CryptoJS.AES.encrypt(message, secret); //it works with 256 bit strength key
-    var decrypted = CryptoJS.AES.decrypt(message, secret); //seems to be ok. but in truth it just turns the encrypted to HEX.
+    var decrypted = CryptoJS.AES.decrypt(message, secret); //it works.
 	if (encstatus == "enc"){
 	form.resultsarea.value = encrypted;
 	} else if (encstatus == "dec"){
@@ -60,7 +60,7 @@ Give your text here: <br>
 Results:<br>
 <textarea cols="50" rows="4" name="resultsarea" value="" >
 </textarea><br>
-<input type="button" name="submit" value="Submit" onClick="testResults(this.form)">
+<input type="button" name="submit" value="Submit" onClick="startResults(this.form)">
 </form>
   
 </body>
