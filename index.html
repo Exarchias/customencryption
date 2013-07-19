@@ -9,15 +9,16 @@ The Advanced Encryption Standard (AES) is a U.S. Federal Information Processing 
 It was selected after a 5-year process where 15 competing designs were evaluated. -->
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
 <script>
-	
-	
 
-	
+
+
+
 	function startResults (form) {
 	var message = form.inputbox.value;
 	var secret = form.keyphrase.value;
 	var encstatus = "Please fill all the fields";
-	
+	var encrptalgorithm = "AES";
+
 	for (i = 0; i < 2; i++) {
 
 	if ( form.encrutpion[i].checked ) {
@@ -27,11 +28,11 @@ It was selected after a 5-year process where 15 competing designs were evaluated
 
 		}
 	}
-	
-	
 
-    var encrypted = CryptoJS.AES.encrypt(message, secret); //it works with 256 bit strength key
-    var decrypted = CryptoJS.AES.decrypt(message, secret); //it works.
+
+
+    var encrypted = eval("CryptoJS." + encrptalgorithm +".encrypt(message, secret)"); //it works with 256 bit strength key
+    var decrypted = eval("CryptoJS."+ encrptalgorithm + ".decrypt(message, secret)"); //it works.
 	if (encstatus == "enc"){
 	form.resultsarea.value = encrypted;
 	} else if (encstatus == "dec"){
@@ -42,7 +43,7 @@ It was selected after a 5-year process where 15 competing designs were evaluated
     
     
 }
-	
+
 </script>
   
 </head>
