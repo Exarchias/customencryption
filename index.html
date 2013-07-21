@@ -13,15 +13,26 @@ It was selected after a 5-year process where 15 competing designs were evaluated
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/rc4.js"></script>
 <script>
 
+var formatoptionsvar =  'format: <select name="encryptparam" onChange="setFormat(this.form)"> <option value="">default</option> <option value=".key">key</option> <option value=".iv">iv</option> <option value=".salt">salt</option><option value=".ciphertext">ciphertext</option></select><br>';
+var encryptparam = "";
 
-
-
+	function iWantFormat(form) {
+     if(form.doformat.checked) {
+	 document.getElementById('formatdiv').innerHTML=formatoptionsvar;
+     } else {
+	 document.getElementById('formatdiv').innerHTML="";
+	 encryptparam = "";
+	 }
+};
+	function setFormat(form){
+	encryptparam = form.encryptparam.value;
+	}
+	
 	function startResults (form) {
 	var message = form.inputbox.value;
 	var secret = form.keyphrase.value;
 	var encstatus = "Please fill all the fields";
 	var encrptalgorithm = form.encrptalgorithm.value;
-	var encryptparam = form.encryptparam.value;
 
 	for (i = 0; i < 2; i++) {
 
@@ -69,15 +80,8 @@ Algorithm:
   <option value="Rabbit">Rabbit encryption</option>
   <option value="RC4">RC4 encryption</option>
 </select>
- format:
-<select name="encryptparam">
-  <option value="">default</option>
-  <option value=".key">key</option>
-  <option value=".iv">iv</option>
-  <option value=".salt">salt</option>
-  <option value=".ciphertext">ciphertext</option>
-  </select>
-  <br>
+<input type="checkbox" name="doformat" value="" onchange="iWantFormat(this.form)">format options<br>
+<div id="formatdiv"></div>
 Results:<br>
 <textarea cols="50" rows="4" name="resultsarea" value="" >
 </textarea><br>
