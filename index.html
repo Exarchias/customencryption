@@ -1,94 +1,37 @@
 <!doctype html>
 <hmtl>
-<head>
-<title>Custom Encryption for everyone</title>
+	<head>
+		<title>Custom Encryption for everyone</title>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/rabbit.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/rc4.js"></script>
+		<script src="customencryption.js"></script>
+	</head>
 
-<!-- 
-AES
-The Advanced Encryption Standard (AES) is a U.S. Federal Information Processing Standard (FIPS). 
-It was selected after a 5-year process where 15 competing designs were evaluated. -->
-<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
-<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js"></script>
-<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/rabbit.js"></script>
-<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/rc4.js"></script>
-<script>
+	<body>
+  	<form NAME="myform" ACTION="" METHOD="GET" >
+  		<input type="radio" name="encryption" value="enc">encryption<br>
+  		<input type="radio" name="encryption" value="dec">decryption<br>
 
-var formatoptionsvar =  'format: <select name="encryptparam" onChange="setFormat(this.form)"> <option value="">default</option> <option value=".key">key</option> <option value=".iv">iv</option> <option value=".salt">salt</option><option value=".ciphertext">ciphertext</option></select><br>';
-var encryptparam = "";
+  		Give me your Key-Phrase here: <input type="text" name="keyphrase" VALUE=""><br>
 
-	function iWantFormat(form) {
-     if(form.doformat.checked) {
-	 document.getElementById('formatdiv').innerHTML=formatoptionsvar;
-     } else {
-	 document.getElementById('formatdiv').innerHTML="";
-	 encryptparam = "";
-	 }
-};
-	function setFormat(form){
-	encryptparam = form.encryptparam.value;
-	}
-	
-	function startResults (form) {
-	var message = form.inputbox.value;
-	var secret = form.keyphrase.value;
-	var encstatus = "Please fill all the fields";
-	var encrptalgorithm = form.encrptalgorithm.value;
-
-	for (i = 0; i < 2; i++) {
-
-	if ( form.encrutpion[i].checked ) {
-
-	encstatus = form.encrutpion[i].value;
-	break;
-
-		}
-	}
-
-
-
-    var encrypted = eval("CryptoJS." + encrptalgorithm +".encrypt(message, secret)"); //it works with 256 bit strength key
-    var decrypted = eval("CryptoJS."+ encrptalgorithm + ".decrypt(message, secret)"); //it works.
-	if (encstatus == "enc"){
-	form.resultsarea.value = eval("encrypted" + encryptparam);
-	} else if (encstatus == "dec"){
-	form.resultsarea.value = decrypted.toString(CryptoJS.enc.Utf8);
-	} else {
-	alert (encstatus);
-	}
-    
-    
-}
-
-</script>
-  
-</head>
-
-<body>
-  
-<form NAME="myform" ACTION="" METHOD="GET" >
-<input type="radio" name="encrutpion" value="enc">encryption<br>
-<input type="radio" name="encrutpion" value="dec">decryption
-<br>
-Give me your Key-Phrase here: <input type="text" name="keyphrase" VALUE=""><br>
-Give your text here: <br>
-<input TYPE="text" NAME="inputbox" VALUE=""> <br>
-Algorithm:
-<select name="encrptalgorithm">
-  <option value="AES">AES encryption</option>
-  <option value="DES">DES encryption</option>
-  <option value="TripleDES">TripleDES encryption</option>
-  <option value="Rabbit">Rabbit encryption</option>
-  <option value="RC4">RC4 encryption</option>
-</select>
-<input type="checkbox" name="doformat" value="" onchange="iWantFormat(this.form)">format options<br>
-<div id="formatdiv"></div>
-Results:<br>
-<textarea cols="50" rows="4" name="resultsarea" value="" >
-</textarea><br>
-<input type="button" name="submit" value="Submit" onClick="startResults(this.form)">
-</form>
-  
-</body>
-
-
+  		Give your text here: <br>
+  		<textarea cols="50" rows="4" name="inputbox" value=""></textarea><br>
+  		
+  		Algorithm:
+  		<select name="encrptalgorithm">
+  		  <option value="AES">AES encryption</option>
+  		  <option value="DES">DES encryption</option>
+  		  <option value="TripleDES">TripleDES encryption</option>
+  		  <option value="Rabbit">Rabbit encryption</option>
+  		  <option value="RC4">RC4 encryption</option>
+  		</select>
+  		<input type="checkbox" name="doformat" value="" onchange="iWantFormat(this.form)">format options<br>
+  		<div id="formatdiv"></div>
+  		Results:<br>
+  		<textarea cols="50" rows="4" name="resultsarea" value=""></textarea><br>
+  		<input type="button" name="submit" value="Submit" onClick="startResults(this.form)">
+  	</form>
+	</body>
 </html>
